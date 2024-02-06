@@ -1,0 +1,8 @@
+<div class="auction-list">
+  @for (auction of auctions$ | async; track auction) {
+  <app-auction-card
+    class="auction-list__item"
+    [auction]="auction"
+  ></app-auction-card>
+  }
+</div>

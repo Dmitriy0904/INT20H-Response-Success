@@ -1,0 +1,31 @@
+<mat-card class="auth-form__content">
+  <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field class="auth-form__input">
+      <input matInput placeholder="Username" />
+    </mat-form-field>
+
+    <mat-form-field class="auth-form__input">
+      <input matInput type="email" placeholder="Email" />
+    </mat-form-field>
+
+    <mat-form-field class="auth-form__input">
+      <input matInput type="password" placeholder="Password" />
+    </mat-form-field>
+
+    <mat-form-field class="auth-form__input">
+      <input matInput type="password" placeholder="Confirm Password" />
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" class="auth-form__btn">
+      Register
+    </button>
+
+    <p class="auth-form__link">
+      Already registered? <a routerLink="/login">Login here</a>
+    </p>
+  </mat-card-content>
+</mat-card>
