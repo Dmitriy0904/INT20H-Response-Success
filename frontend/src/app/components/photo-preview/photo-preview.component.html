@@ -1,0 +1,16 @@
+<div class="photo-preview">
+  <img class="photo-preview__img" [src]="selectedImage" alt="Selected Image" />
+
+  @if (isEditable) {
+  <div class="photo-preview__upload-section">
+    <label class="photo-preview__label" for="imageInput">Upload Image:</label>
+    <input
+      class="photo-preview__input"
+      type="file"
+      id="imageInput"
+      (change)="setSelectedFile($event)"
+      accept="image/*"
+    />
+  </div>
+  }
+</div>

@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Create Auction</h2>
+
+<mat-dialog-content class="mat-typography dialog-content">
+  <app-photo-preview
+    class="photo-section"
+    [isEditable]="true"
+  ></app-photo-preview>
+
+  <div class="input-section">
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput type="text" placeholder="Enter Title" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput placeholder="Enter Description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Starting Price</mat-label>
+      <input
+        matInput
+        type="number"
+        class="input-section__starting-price"
+        placeholder="0"
+        min="0"
+      />
+      <span matTextPrefix>$&nbsp;</span>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="create()">Create</button>
+</mat-dialog-actions>
