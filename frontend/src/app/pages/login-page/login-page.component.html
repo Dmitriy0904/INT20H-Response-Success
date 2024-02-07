@@ -1,0 +1,23 @@
+<mat-card class="auth-form__content">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-form-field class="auth-form__input">
+      <input matInput type="email" placeholder="Email" />
+    </mat-form-field>
+
+    <mat-form-field class="auth-form__input">
+      <input matInput type="password" placeholder="Password" />
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" class="auth-form__btn">
+      Login
+    </button>
+
+    <p class="auth-form__link">
+      Not registered yet? <a routerLink="/register">Register here</a>
+    </p>
+  </mat-card-content>
+</mat-card>
