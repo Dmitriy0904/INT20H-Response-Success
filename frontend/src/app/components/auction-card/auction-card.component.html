@@ -1,0 +1,14 @@
+<mat-grid-list cols="4" rowHeight="50px">
+  <mat-grid-tile [colspan]="1" [rowspan]="3">
+    <img height="150px" [src]="auction.image" />
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <h2>{{ auction.title }}</h2>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="3">
+    <button mat-raised-button color="primary">Open</button>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="2">
+    <p>{{ auction.description }}</p>
+  </mat-grid-tile>
+</mat-grid-list>

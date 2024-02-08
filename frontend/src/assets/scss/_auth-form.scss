@@ -1,0 +1,31 @@
+.auth-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.auth-form__content {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.auth-form__input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.auth-form__btn {
+  width: 100%;
+}
+
+.auth-form__link {
+  margin-top: 20px !important;
+
+  a {
+    text-decoration: none;
+    color: #1976d2; /* Adjust the color based on your design */
+    font-weight: bold;
+  }
+}
