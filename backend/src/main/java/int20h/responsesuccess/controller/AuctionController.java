@@ -47,7 +47,12 @@ AuctionController {
 
     @GetMapping
     public List<AuctionResponseDto> getAllAuction() {
-        return getListAuctionResponseDto();
+        return getListAuctionResponseDto(57);
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<AuctionResponseDto> getAllAuctionByUser(final @PathVariable Long userId) {
+        return getListAuctionResponseDto(8);
     }
 
     //just for mock data
@@ -87,9 +92,9 @@ AuctionController {
     }
 
     //just for mock data
-    private List<AuctionResponseDto> getListAuctionResponseDto() {
+    private List<AuctionResponseDto> getListAuctionResponseDto(int count) {
         List<AuctionResponseDto> dtoList = new ArrayList<>();
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < count; i++) {
             AuctionResponseDto dto = getTestAuctionResponseDtoById((long) i);
             dto.setName("car" + i);
             dtoList.add(dto);
