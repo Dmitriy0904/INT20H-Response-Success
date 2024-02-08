@@ -1,5 +1,10 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="toolbar" color="primary">
   <span>My App</span>
+
+  <button mat-fab extended color="accent" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+    Create
+  </button>
 
   <ul class="nav-list">
     <li>
