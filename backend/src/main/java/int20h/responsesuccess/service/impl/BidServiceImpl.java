@@ -57,4 +57,9 @@ public class BidServiceImpl implements BidService {
         //todo check auction exist
         return bidRepository.findAllByAuction(auction);
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return bidRepository.existsById(id);
+    }
 }

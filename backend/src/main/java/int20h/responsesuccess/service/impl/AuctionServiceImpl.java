@@ -1,11 +1,11 @@
 package int20h.responsesuccess.service.impl;
 
 import int20h.responsesuccess.entity.Auction;
+import int20h.responsesuccess.entity.User;
 import int20h.responsesuccess.exception.EntityNotFoundException;
 import int20h.responsesuccess.repository.AuctionRepository;
 import int20h.responsesuccess.service.AuctionService;
 import java.util.List;
-import java.util.Optional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,11 +30,6 @@ public class AuctionServiceImpl implements AuctionService {
         auctionRepository.save(auction);
     }
 
-//    @Override
-//    public void delete(Long auctionId) {
-//        auctionRepository.deleteById(auctionId);
-//    }
-
     @Override
     public Auction findById(Long auctionId) {
         return auctionRepository.findById(auctionId).orElseThrow(() -> {
@@ -49,7 +44,12 @@ public class AuctionServiceImpl implements AuctionService {
     }
 
     @Override
-    public List<Auction> findAllByUserId(Long userId) {
-        return null;
+    public List<Auction> findAllByUser(User user) {
+        return auctionRepository.findAllByUser(user);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return auctionRepository.existsById(id);
     }
 }
