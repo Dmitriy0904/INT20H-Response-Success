@@ -44,6 +44,6 @@ export class AuctionsService {
 
   public delete(id: any) {
     return this.httpClient
-    .delete<Auction>(this.apiURL + '/remove/' + id, this.httpOptions);
+    .delete<Auction>(this.apiURL + '/' + id, this.httpOptions);
   }
 }

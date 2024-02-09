@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.connector.Response;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,13 @@ AuctionController {
 
     private final AuctionService auctionService;
     private final UserService userService;
+
+    @PostMapping
+    public int createAuction(final @RequestBody AuctionRequestDto auctionRequestDto) {
+        Auction auction = new Auction(auctionRequestDto);
+        auctionService.create(auction);
+        return Response.SC_CREATED;
+    }
 
     @PostMapping("/user/{userId}")
     public int createAuction(final @RequestBody AuctionRequestDto auctionRequestDto,
@@ -74,5 +82,10 @@ AuctionController {
     public List<Auction> getAllAuctionsByUser(final @PathVariable Long userId) {
         User user = userService.findById(userId);
         return auctionService.findAllByUser(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAuctionById(final @PathVariable Long id) {
+        auctionService.delete(id);
     }
 }

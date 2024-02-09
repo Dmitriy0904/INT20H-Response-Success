@@ -4,6 +4,7 @@
   <app-photo-preview
       class="photo-section"
       [isEditable]="true"
+      [selectedImage]="data.auction.photoUrl"
   ></app-photo-preview>
   <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
     <div class="input-section">
@@ -40,5 +41,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close (click)="close()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSubmit()">Create</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Update</button>
 </mat-dialog-actions>

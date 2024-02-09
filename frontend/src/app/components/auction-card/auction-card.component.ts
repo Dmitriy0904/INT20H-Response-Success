@@ -5,11 +5,9 @@ import { Auction } from "../../model/auction";
 import {MatIcon} from "@angular/material/icon";
 import {MatDialog} from "@angular/material/dialog";
 import {Subject, takeUntil} from "rxjs";
-import {ModalCreateAuctionComponent} from "../modal-create-auction/modal-create-auction.component";
 import {ModalUpdateAuctionComponent} from "../modal-update-auction/modal-update-auction.component";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ModalDeleteAuctionComponent} from "../modal-delete-auction/modal-delete-auction.component";
-import {ModalService} from "../../services/modal.service";
 
 @Component({
   selector: "app-auction-card",
@@ -23,7 +21,6 @@ export class AuctionCardComponent implements OnDestroy {
 
   private dialog: MatDialog = inject(MatDialog);
   private snackBar: MatSnackBar = inject(MatSnackBar);
-  private modalService: ModalService = inject(ModalService);
   private destroy$: Subject<void> = new Subject<void>();
 
   ngOnDestroy(): void {

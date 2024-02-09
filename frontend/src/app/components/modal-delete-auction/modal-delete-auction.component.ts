@@ -2,7 +2,6 @@ import {Component, inject, Input} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {AuctionsService} from "../../services/auctions.service";
-import {ModalService} from "../../services/modal.service";
 
 @Component({
   selector: "app-modal-delete-auction",

@@ -5,9 +5,6 @@ import { MatInputModule } from "@angular/material/input";
 import { PhotoPreviewComponent } from "../photo-preview/photo-preview.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuctionsService} from "../../services/auctions.service";
-import {Auction} from "../../model/auction";
-import {Observable} from "rxjs";
-import {ModalService} from "../../services/modal.service";
 
 @Component({
   selector: "app-modal-update-auction",
@@ -27,7 +24,6 @@ export class ModalUpdateAuctionComponent {
       MatDialogRef<ModalUpdateAuctionComponent>
   );
   private auctionsService: AuctionsService = inject(AuctionsService);
-  public modalService: ModalService = inject(ModalService);
   public data: any = inject(MAT_DIALOG_DATA);
 
   auctionForm = new FormGroup(

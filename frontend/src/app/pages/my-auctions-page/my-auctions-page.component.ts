@@ -16,5 +16,5 @@ import {ActivatedRoute} from "@angular/router";
 export class MyAuctionsPageComponent {
   private auctionsService: AuctionsService = inject(AuctionsService);
 
-  public auctions$: Observable<Auction[]> = this.auctionsService.getAllByUserId(123);
+  public auctions$: Observable<Auction[]> = this.auctionsService.getAll();
 }

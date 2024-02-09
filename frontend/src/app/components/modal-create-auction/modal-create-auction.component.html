@@ -4,6 +4,7 @@
   <app-photo-preview
       class="photo-section"
       [isEditable]="true"
+      [selectedImage]="'assets/images/image-placeholder.jpg'"
   ></app-photo-preview>
   <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
     <div class="input-section">
