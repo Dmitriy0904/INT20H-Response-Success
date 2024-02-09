@@ -1,5 +1,6 @@
 package int20h.responsesuccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,8 +32,11 @@ public class User {
     //todo add crypt password
     private String password;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<Bid> bids = new ArrayList<>();
+
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<Auction> auctions = new ArrayList<>();
 }

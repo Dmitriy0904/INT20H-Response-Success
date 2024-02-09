@@ -1,8 +1,9 @@
 package int20h.responsesuccess.service;
 
 import int20h.responsesuccess.entity.Auction;
+import int20h.responsesuccess.entity.User;
+
 import java.util.List;
-import java.util.Optional;
 
 public interface AuctionService {
 
@@ -11,6 +12,6 @@ public interface AuctionService {
 //    void delete(Long auctionId);
     Auction findById(Long auctionId);
     List<Auction> findAll();
-    List<Auction> findAllByUserId(Long userId);
-
+    List<Auction> findAllByUser(User user);
+    boolean existsById(Long id);
 }
