@@ -1,9 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject } from "@angular/core";
+import {Component, inject, OnInit} from "@angular/core";
 import { AuctionCardComponent } from "../../components/auction-card/auction-card.component";
 import { AuctionsService } from "../../services/auctions.service";
 import { Auction } from "../../model/auction";
 import { Observable } from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: "app-my-auctions-page",
@@ -15,5 +16,5 @@ import { Observable } from "rxjs";
 export class MyAuctionsPageComponent {
   private auctionsService: AuctionsService = inject(AuctionsService);
 
-  public auctions$: Observable<Auction[]> = this.auctionsService.getAll();
+  public auctions$: Observable<Auction[]> = this.auctionsService.getAllByUserId(123);
 }

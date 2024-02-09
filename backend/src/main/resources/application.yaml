@@ -6,9 +6,9 @@ spring:
     name: auction-application-response-success
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: CHANGE_ME
-    url: CHANGE_ME
-    password: CHANGE_ME
+    username: 'postgres'
+    url: jdbc:postgresql://localhost:5432/auctions
+    password: 'root'
   jpa:
     properties:
       hibernate:

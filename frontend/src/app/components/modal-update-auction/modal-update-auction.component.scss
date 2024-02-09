@@ -1,0 +1,24 @@
+.dialog-content {
+  display: flex;
+}
+
+.photo-section {
+  height: 300px;
+  margin-bottom: 24px;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.input-section__starting-price {
+  text-align: right;
+  -moz-appearance: textfield;
+}
+
+.input-section__starting-price::-webkit-outer-spin-button,
+.input-section__starting-price::-webkit-inner-spin-button {
+  display: none;
+}

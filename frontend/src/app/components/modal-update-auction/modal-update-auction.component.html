@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Create Auction</h2>
+<h2 mat-dialog-title>Edit Auction</h2>
 
 <mat-dialog-content class="mat-typography dialog-content">
   <app-photo-preview
@@ -9,12 +9,16 @@
     <div class="input-section">
       <mat-form-field class="full-width">
         <mat-label>Title</mat-label>
-        <input formControlName="name" matInput type="text" placeholder="Enter Title"/>
+        <input formControlName="name" matInput type="text" placeholder="Enter Title"
+               value="{{data.auction.name}}"/>
       </mat-form-field>
+
 
       <mat-form-field class="example-full-width">
         <mat-label>Description</mat-label>
-        <textarea formControlName="description" matInput placeholder="Enter Description"></textarea>
+        <textarea formControlName="description" matInput placeholder="Enter Description"
+                  value="{{data.auction.description}}"
+        ></textarea>
       </mat-form-field>
 
       <mat-form-field floatLabel="always">
@@ -26,6 +30,7 @@
             class="input-section__starting-price"
             placeholder="0"
             min="0"
+            value="{{data.auction.startPrice}}"
         />
         <span matTextPrefix>$&nbsp;</span>
       </mat-form-field>
