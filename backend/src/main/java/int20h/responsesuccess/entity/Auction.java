@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import int20h.responsesuccess.model.AuctionRequestDto;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,6 +36,7 @@ public class Auction {
     private String name;
     private String description;
     private String photoUrl;
+    @Enumerated(EnumType.STRING)
     private Status status;
     private Double startPrice;
     private Double actualPrice;
