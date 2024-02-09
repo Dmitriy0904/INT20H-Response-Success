@@ -10,4 +10,5 @@ public interface UserService {
     void update(User user);
     User findById(Long userId);
     User findByEmail(String email);
+    boolean existsById(Long id);
 }

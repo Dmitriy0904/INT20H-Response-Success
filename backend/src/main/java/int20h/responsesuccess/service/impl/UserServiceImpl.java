@@ -45,4 +45,9 @@ public class UserServiceImpl implements UserService {
             throw new EntityNotFoundException("User", email);
         }
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return userRepository.existsById(id);
+    }
 }

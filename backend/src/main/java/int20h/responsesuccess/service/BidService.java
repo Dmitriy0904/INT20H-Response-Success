@@ -14,5 +14,6 @@ public interface BidService {
     List<Bid> findAll();
     List<Bid> findAllByUser(User user);
     List<Bid> findAllByAuction(Auction auction);
+    boolean existsById(Long id);
 
 }

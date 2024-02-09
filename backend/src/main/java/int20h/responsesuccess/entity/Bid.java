@@ -1,5 +1,6 @@
 package int20h.responsesuccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,10 +27,12 @@ public class Bid {
     private Double amount;
     private Long timestamp;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="users_id")
     private User user;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="auction_id")
     private Auction auction;
