@@ -30,13 +30,6 @@ export class HeaderComponent implements OnDestroy {
   }
 
   public openDialog(): void {
-    const dialogRef = this.dialog.open(ModalCreateAuctionComponent);
-
-    dialogRef
-      .afterClosed()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((result) => {
-        console.log(`Dialog result: ${result}`);
-      });
+    this.dialog.open(ModalCreateAuctionComponent);
   }
 }
