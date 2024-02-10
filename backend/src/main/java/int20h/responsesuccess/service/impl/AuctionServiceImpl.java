@@ -31,6 +31,11 @@ public class AuctionServiceImpl implements AuctionService {
     }
 
     @Override
+    public void delete(Long auctionId) {
+        auctionRepository.deleteById(auctionId);
+    }
+
+    @Override
     public Auction findById(Long auctionId) {
         return auctionRepository.findById(auctionId).orElseThrow(() -> {
             log.warn("Package with id = {} not found", auctionId);

@@ -1,5 +1,7 @@
 package int20h.responsesuccess.entity;
 
+import static int20h.responsesuccess.util.DefaultConstants.DEFAULT_PHOTO_URL;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import int20h.responsesuccess.model.AuctionRequestDto;
@@ -54,14 +56,14 @@ public class Auction {
         if (dto.getId() != null) {
             this.id = dto.getId();
         }
+        this.user = user;
         this.name = dto.getName();
         this.description = dto.getDescription();
-        this.photoUrl = dto.getPhotoUrl();
-        this.status = Optional.ofNullable(dto.getStatus()).orElse(Status.PENDING);
+        this.photoUrl = DEFAULT_PHOTO_URL;
+        this.status = Status.PENDING;
         this.startPrice = dto.getStartPrice();
-        this.actualPrice = Optional.ofNullable(dto.getActualPrice()).orElse(dto.getStartPrice());
-        this.user = user;
-        this.bids = Optional.ofNullable(dto.getBids()).orElse(new ArrayList<>());
+        this.actualPrice = dto.getStartPrice();
+        this.bids = new ArrayList<>();
     }
 
     public Auction (AuctionRequestDto dto) {
@@ -70,11 +72,10 @@ public class Auction {
         }
         this.name = dto.getName();
         this.description = dto.getDescription();
-        this.photoUrl = dto.getPhotoUrl();
-        this.status = Optional.ofNullable(dto.getStatus()).orElse(Status.PENDING);
+        this.photoUrl = DEFAULT_PHOTO_URL;
+        this.status = Status.PENDING;
         this.startPrice = dto.getStartPrice();
-        this.actualPrice = Optional.ofNullable(dto.getActualPrice()).orElse(dto.getStartPrice());
-        this.user = dto.getUser();
-        this.bids = Optional.ofNullable(dto.getBids()).orElse(new ArrayList<>());
+        this.actualPrice = dto.getStartPrice();
+        this.bids = new ArrayList<>();
     }
 }

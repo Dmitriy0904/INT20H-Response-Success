@@ -1,5 +1,5 @@
-import { Component, inject } from "@angular/core";
-import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import {Component, Inject, inject, Input} from "@angular/core";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { PhotoPreviewComponent } from "../photo-preview/photo-preview.component";
@@ -7,7 +7,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {AuctionsService} from "../../services/auctions.service";
 
 @Component({
-  selector: "app-modal-create-auction",
+  selector: "app-modal-update-auction",
   standalone: true,
   imports: [
     MatDialogModule,
@@ -16,34 +16,37 @@ import {AuctionsService} from "../../services/auctions.service";
     PhotoPreviewComponent,
     ReactiveFormsModule,
   ],
-  templateUrl: "./modal-create-auction.component.html",
-  styleUrl: "./modal-create-auction.component.scss",
+  templateUrl: "./modal-update-auction.component.html",
+  styleUrl: "./modal-update-auction.component.scss",
 })
-export class ModalCreateAuctionComponent {
-  private dialogRef: MatDialogRef<ModalCreateAuctionComponent> = inject(
-    MatDialogRef<ModalCreateAuctionComponent>
+export class ModalUpdateAuctionComponent {
+  private dialogRef: MatDialogRef<ModalUpdateAuctionComponent> = inject(
+      MatDialogRef<ModalUpdateAuctionComponent>
   );
   private auctionsService: AuctionsService = inject(AuctionsService);
+  public data: any = inject(MAT_DIALOG_DATA);
 
   auctionForm = new FormGroup(
       {
-        name: new FormControl('', [Validators.required,
+        id: new FormControl(this.data.auction.id),
+        name: new FormControl(this.data.auction.name, [Validators.required,
           Validators.pattern(/^[A-Za-z]{2,15}$/)]),
-        description: new FormControl('', [Validators.required,
+        description: new FormControl(this.data.auction.description, [Validators.required,
           Validators.pattern(/^[A-Za-z]{2,500}$/)]),
         photoUrl: new FormControl(),
-        startPrice: new FormControl('', [Validators.required,
+        startPrice: new FormControl(this.data.auction.startPrice, [Validators.required,
           Validators.min(1)]),
       }
   );
 
   public close(): void {
+    console.log(this.data.auction.name);
     this.dialogRef.close();
   }
 
   public onSubmit(): void {
     console.log(this.auctionForm.value);
-    this.auctionsService.create(this.auctionForm.value).subscribe({
+    this.auctionsService.update(this.auctionForm.value).subscribe({
       next: () => {
         this.dialogRef.close();
       }, error: (error) => {

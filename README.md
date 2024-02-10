@@ -6,7 +6,22 @@
 ![image](https://github.com/Dmitriy0904/INT20H-Response-Success-Test-Task/assets/62384390/bf89bba0-38d7-44c2-b573-8dc449dd37f3)
 <br><br><br>
 
-#### Edge cases:
-- User can not edit active auction
--  User can not edit auctions which he doesn't own
-- User can not make a bid to his auction
+### Quick Start
+```bash
+# cd backend
+cd backend
+# start Postgres DB
+docker-compose up --build
+# run Spring Boot Application
+mvn spring-boot:run
+
+# cd frontend
+cd frontend
+# install dependencies
+npm install
+# run Angular Application
+npm start
+
+# open in browser
+http://localhost:4200/
+```

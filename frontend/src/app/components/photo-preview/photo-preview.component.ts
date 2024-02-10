@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import {Auction} from "../../model/auction";
 
 @Component({
   selector: "app-photo-preview",
@@ -9,8 +10,7 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class PhotoPreviewComponent implements OnInit {
   @Input() isEditable: boolean = false;
-
-  public selectedImage: string = "assets/images/image-placeholder.jpg";
+  @Input({ required: true }) selectedImage!: string;
 
   private fileReader: FileReader = new FileReader();
 
