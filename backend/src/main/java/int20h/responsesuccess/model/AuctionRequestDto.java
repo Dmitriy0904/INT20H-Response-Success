@@ -14,5 +14,7 @@ public class AuctionRequestDto {
     private String name;
     private String description;
     private String photoUrl;
+    private String status;
     private Double startPrice;
+    private Double actualPrice;
 }

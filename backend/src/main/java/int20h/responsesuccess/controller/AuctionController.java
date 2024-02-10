@@ -45,7 +45,6 @@ AuctionController {
         User user = userService.findById(userId);
         Auction auction = new Auction(auctionRequestDto, user);
         auctionService.create(auction);
-        //todo check what we should return
         return Response.SC_CREATED;
     }
 
@@ -57,14 +56,12 @@ AuctionController {
             Auction auction = new Auction(auctionRequestDto);
             auctionService.update(auction);
         } else {
-            //todo check if user is not null
             throw new EntityNotFoundException(
                     "Auction",
                     auctionRequestDto != null && auctionRequestDto.getId() != null ?
                             auctionRequestDto.getId().toString() :
                             null);
         }
-        //todo check what we should return
         return Response.SC_OK;
     }
 

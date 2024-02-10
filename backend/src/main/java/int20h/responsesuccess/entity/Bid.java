@@ -1,6 +1,7 @@
 package int20h.responsesuccess.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +26,8 @@ public class Bid {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double amount;
-    private Long timestamp;
+    @Column(name = "created_date")
+    private Long createdDate;
 
     @JsonManagedReference
     @ManyToOne

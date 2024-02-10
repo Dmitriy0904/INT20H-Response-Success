@@ -35,7 +35,6 @@ public class BidController {
         Auction auction = auctionService.findById(auctionId);
         bid.setAuction(auction);
         bidService.create(bid);
-        //todo check what we should return
         return Response.SC_CREATED;
     }
 
@@ -46,14 +45,12 @@ public class BidController {
                 bidService.existsById(bid.getId())) {
             bidService.update(bid);
         } else {
-            //todo check if user is not null
             throw new EntityNotFoundException(
                     "Bid",
                     bid != null && bid.getId() != null ?
                             bid.getId().toString() :
                             null);
         }
-        //todo check what we should return
         return Response.SC_OK;
     }
 
