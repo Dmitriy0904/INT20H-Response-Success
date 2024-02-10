@@ -27,10 +27,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //todo add email validation
     private String email;
     private String username;
-    //todo add crypt password
     private String password;
 
     @JsonBackReference
