@@ -1,5 +1,5 @@
 <div class="auction-list">
-  @for (auction of auctions$ | async; track auction) {
+  @for (auction of auctions; track auction) {
   <app-auction-card
     class="auction-list__item"
     [auction]="auction"

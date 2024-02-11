@@ -2,36 +2,43 @@
 
 <mat-dialog-content class="mat-typography dialog-content">
   <app-photo-preview
-      class="photo-section"
-      [isEditable]="true"
-      [selectedImage]="data.auction.photoUrl"
+    class="photo-section"
+    [isEditable]="true"
+    [selectedImage]="data.auction.photoUrl"
   ></app-photo-preview>
-  <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="auctionForm">
     <div class="input-section">
       <mat-form-field class="full-width">
         <mat-label>Title</mat-label>
-        <input formControlName="name" matInput type="text" placeholder="Enter Title"
-               value="{{data.auction.name}}"/>
+        <input
+          formControlName="name"
+          matInput
+          type="text"
+          placeholder="Enter Title"
+          value="{{ data.auction.name }}"
+        />
       </mat-form-field>
-
 
       <mat-form-field class="example-full-width">
         <mat-label>Description</mat-label>
-        <textarea formControlName="description" matInput placeholder="Enter Description"
-                  value="{{data.auction.description}}"
+        <textarea
+          formControlName="description"
+          matInput
+          placeholder="Enter Description"
+          value="{{ data.auction.description }}"
         ></textarea>
       </mat-form-field>
 
       <mat-form-field floatLabel="always">
         <mat-label>Starting Price</mat-label>
         <input
-            matInput
-            type="number"
-            formControlName="startPrice"
-            class="input-section__starting-price"
-            placeholder="0"
-            min="0"
-            value="{{data.auction.startPrice}}"
+          matInput
+          type="number"
+          formControlName="startPrice"
+          class="input-section__starting-price"
+          placeholder="0"
+          min="0"
+          value="{{ data.auction.startPrice }}"
         />
         <span matTextPrefix>$&nbsp;</span>
       </mat-form-field>

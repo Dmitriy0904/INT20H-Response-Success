@@ -1,10 +1,9 @@
 import { CommonModule } from "@angular/common";
-import {Component, inject, OnInit} from "@angular/core";
+import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { AuctionCardComponent } from "../../components/auction-card/auction-card.component";
 import { AuctionsService } from "../../services/auctions.service";
 import { Auction } from "../../model/auction";
-import { Observable } from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-my-auctions-page",
@@ -13,8 +12,38 @@ import {ActivatedRoute} from "@angular/router";
   templateUrl: "./my-auctions-page.component.html",
   styleUrl: "./my-auctions-page.component.scss",
 })
-export class MyAuctionsPageComponent {
+export class MyAuctionsPageComponent implements OnInit, OnDestroy {
   private auctionsService: AuctionsService = inject(AuctionsService);
+  private destroy$: Subject<void> = new Subject<void>();
 
-  public auctions$: Observable<Auction[]> = this.auctionsService.getAll();
+  public auctions: Auction[] = [];
+
+  ngOnInit(): void {
+    this.getAll();
+    this.handleReinitializeEvent();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private handleReinitializeEvent(): void {
+    this.auctionsService.reinitializeList$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => this.getAll(),
+      });
+  }
+
+  private getAll(): void {
+    this.auctionsService
+      .getAll()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (auctions: Auction[]) => {
+          this.auctions = auctions;
+        },
+      });
+  }
 }
