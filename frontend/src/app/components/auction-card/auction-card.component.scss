@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  padding: 16px;
+  border-width: 0;
+  border-style: solid;
+  border-radius: var(--mdc-elevated-card-container-shape);
+  border-color: var(--mdc-elevated-card-container-color);
+  background-color: var(--mdc-elevated-card-container-color);
+  box-shadow: var(--mdc-elevated-card-container-elevation);
+}
+
+.example-button-row {
+  display: table-cell;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
