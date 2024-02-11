@@ -34,7 +34,11 @@ AuctionController {
 
     @PostMapping
     public int createAuction(final @RequestBody AuctionRequestDto auctionRequestDto) {
-        Auction auction = new Auction(auctionRequestDto);
+        if (auctionRequestDto.getUserId() == null) {
+            throw new EntityNotFoundException("User", null);
+        }
+        User user = userService.findById(auctionRequestDto.getUserId());
+        Auction auction = new Auction(auctionRequestDto, user);
         auctionService.create(auction);
         return Response.SC_CREATED;
     }
@@ -45,7 +49,6 @@ AuctionController {
         User user = userService.findById(userId);
         Auction auction = new Auction(auctionRequestDto, user);
         auctionService.create(auction);
-        //todo check what we should return
         return Response.SC_CREATED;
     }
 
@@ -54,17 +57,19 @@ AuctionController {
         if (auctionRequestDto != null &&
                 auctionRequestDto.getId() != null &&
                 auctionService.existsById(auctionRequestDto.getId())) {
-            Auction auction = new Auction(auctionRequestDto);
+            if (auctionRequestDto.getUserId() == null) {
+                throw new EntityNotFoundException("User", null);
+            }
+            User user = userService.findById(auctionRequestDto.getUserId());
+            Auction auction = new Auction(auctionRequestDto, user);
             auctionService.update(auction);
         } else {
-            //todo check if user is not null
             throw new EntityNotFoundException(
                     "Auction",
                     auctionRequestDto != null && auctionRequestDto.getId() != null ?
                             auctionRequestDto.getId().toString() :
                             null);
         }
-        //todo check what we should return
         return Response.SC_OK;
     }
 

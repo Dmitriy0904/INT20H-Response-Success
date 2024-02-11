@@ -9,13 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuctionRequestDto {
+public class BidRequestDto {
     private Long id;
-    private String name;
-    private String description;
-    private String photoUrl;
-    private String status;
-    private Double startPrice;
-    private Double actualPrice;
+    private Double amount;
+    private Long createdDate;
     private Long userId;
+    private Long auctionId;
 }

@@ -1,6 +1,7 @@
 package int20h.responsesuccess.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import int20h.responsesuccess.model.UserRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,10 +27,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //todo add email validation
     private String email;
     private String username;
-    //todo add crypt password
     private String password;
 
     @JsonBackReference
@@ -39,4 +38,11 @@ public class User {
     @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<Auction> auctions = new ArrayList<>();
+
+    public User (UserRequestDto dto) {
+        this.id = dto.getId();
+        this.email = dto.getEmail();
+        this.username = dto.getUsername();
+        this.password = dto.getPassword();
+    }
 }

@@ -1,6 +1,8 @@
 package int20h.responsesuccess.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import int20h.responsesuccess.model.BidRequestDto;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +14,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Optional;
 
 @Data
 @Entity
@@ -25,7 +29,8 @@ public class Bid {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double amount;
-    private Long timestamp;
+    @Column(name = "created_date")
+    private Long createdDate;
 
     @JsonManagedReference
     @ManyToOne
@@ -37,4 +42,11 @@ public class Bid {
     @JoinColumn(name="auction_id")
     private Auction auction;
 
+    public Bid(BidRequestDto dto, User user, Auction auction) {
+        this.id = dto.getId();
+        this.amount = dto.getAmount();
+        this.createdDate = Optional.ofNullable(dto.getCreatedDate()).orElse(System.currentTimeMillis());
+        this.user = user;
+        this.auction = auction;
+    }
 }

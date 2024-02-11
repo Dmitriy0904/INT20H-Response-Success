@@ -5,6 +5,7 @@ import static int20h.responsesuccess.util.DefaultConstants.DEFAULT_PHOTO_URL;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import int20h.responsesuccess.model.AuctionRequestDto;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -22,7 +23,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Data
 @Entity
@@ -37,10 +37,13 @@ public class Auction {
     private Long id;
     private String name;
     private String description;
+    @Column(name = "photo_url")
     private String photoUrl;
     @Enumerated(EnumType.STRING)
     private Status status;
+    @Column(name = "start_price")
     private Double startPrice;
+    @Column(name = "actual_price")
     private Double actualPrice;
 
     @JsonManagedReference
@@ -60,7 +63,9 @@ public class Auction {
         this.name = dto.getName();
         this.description = dto.getDescription();
         this.photoUrl = DEFAULT_PHOTO_URL;
-        this.status = Status.PENDING;
+        this.status = dto.getStatus() == null ?
+                Status.PENDING :
+                Status.valueOf(dto.getStatus());
         this.startPrice = dto.getStartPrice();
         this.actualPrice = dto.getStartPrice();
         this.bids = new ArrayList<>();
@@ -73,7 +78,9 @@ public class Auction {
         this.name = dto.getName();
         this.description = dto.getDescription();
         this.photoUrl = DEFAULT_PHOTO_URL;
-        this.status = Status.PENDING;
+        this.status = dto.getStatus() == null ?
+                Status.PENDING :
+                Status.valueOf(dto.getStatus());
         this.startPrice = dto.getStartPrice();
         this.actualPrice = dto.getStartPrice();
         this.bids = new ArrayList<>();

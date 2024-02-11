@@ -4,9 +4,10 @@ import int20h.responsesuccess.entity.Auction;
 import int20h.responsesuccess.entity.Bid;
 import int20h.responsesuccess.entity.User;
 import int20h.responsesuccess.exception.EntityNotFoundException;
-import int20h.responsesuccess.model.AuctionRequestDto;
+import int20h.responsesuccess.model.BidRequestDto;
 import int20h.responsesuccess.service.AuctionService;
 import int20h.responsesuccess.service.BidService;
+import int20h.responsesuccess.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.connector.Response;
@@ -28,32 +29,35 @@ public class BidController {
 
     private final BidService bidService;
     private final AuctionService auctionService;
+    private final UserService userService;
 
-    @PostMapping("/auction/{auctionId}")
-    public int createBid(final @RequestBody Bid bid,
-                         final @PathVariable Long auctionId) {
-        Auction auction = auctionService.findById(auctionId);
-        bid.setAuction(auction);
+    @PostMapping
+    public int createBid(final @RequestBody BidRequestDto dto) {
+        Auction auction = getAuctionById(dto.getAuctionId());
+        User user = getUserById(dto.getUserId());
+        Bid bid = new Bid(dto, user, auction);
         bidService.create(bid);
-        //todo check what we should return
         return Response.SC_CREATED;
     }
 
     @PutMapping
-    public int editBid(final @RequestBody Bid bid) {
-        if (bid != null &&
-                bid.getId() != null &&
-                bidService.existsById(bid.getId())) {
+    public int editBid(final @RequestBody BidRequestDto dto) {
+        if (dto != null &&
+                dto.getId() != null &&
+                bidService.existsById(dto.getId())) {
+            Auction auction = getAuctionById(dto.getAuctionId());
+            User user = getUserById(dto.getUserId());
+            Bid currentBid = bidService.findById(dto.getId());
+            dto.setCreatedDate(currentBid.getCreatedDate());
+            Bid bid = new Bid(dto, user, auction);
             bidService.update(bid);
         } else {
-            //todo check if user is not null
             throw new EntityNotFoundException(
                     "Bid",
-                    bid != null && bid.getId() != null ?
-                            bid.getId().toString() :
+                    dto != null && dto.getId() != null ?
+                            dto.getId().toString() :
                             null);
         }
-        //todo check what we should return
         return Response.SC_OK;
     }
 
@@ -65,5 +69,19 @@ public class BidController {
     @GetMapping
     public List<Bid> getAllBids() {
         return bidService.findAll();
+    }
+
+    private User getUserById(Long id) {
+        if (id == null) {
+            throw new EntityNotFoundException("User", null);
+        }
+        return userService.findById(id);
+    }
+
+    private Auction getAuctionById(Long id) {
+        if (id == null) {
+            throw new EntityNotFoundException("Auction", null);
+        }
+        return auctionService.findById(id);
     }
 }

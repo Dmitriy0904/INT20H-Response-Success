@@ -2,6 +2,7 @@ package int20h.responsesuccess.controller;
 
 import int20h.responsesuccess.entity.User;
 import int20h.responsesuccess.exception.EntityNotFoundException;
+import int20h.responsesuccess.model.UserRequestDto;
 import int20h.responsesuccess.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,21 +24,21 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public int createUser(final @RequestBody User user) {
+    public int createUser(final @RequestBody UserRequestDto dto) {
+        User user = new User(dto);
         userService.create(user);
-        //todo check what we should return
         return Response.SC_CREATED;
     }
 
     @PutMapping
-    public int editUser(final @RequestBody User user) {
-        if (user != null && user.getId() != null && userService.existsById(user.getId())) {
+    public int editUser(final @RequestBody UserRequestDto dto) {
+
+        if (dto != null && dto.getId() != null && userService.existsById(dto.getId())) {
+            User user = new User(dto);
             userService.update(user);
         } else {
-            //todo check if user is not null
-            throw new EntityNotFoundException("User", user != null && user.getId() != null ? user.getId().toString() : null);
+            throw new EntityNotFoundException("User", dto != null && dto.getId() != null ? dto.getId().toString() : null);
         }
-        //todo check what we should return
         return Response.SC_OK;
     }
 
