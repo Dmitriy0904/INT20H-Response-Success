@@ -34,7 +34,6 @@ public class UserController {
     public int editUser(final @RequestBody UserRequestDto dto) {
 
         if (dto != null && dto.getId() != null && userService.existsById(dto.getId())) {
-            //todo мб трабли зі списками
             User user = new User(dto);
             userService.update(user);
         } else {

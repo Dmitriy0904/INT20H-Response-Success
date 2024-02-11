@@ -63,7 +63,9 @@ public class Auction {
         this.name = dto.getName();
         this.description = dto.getDescription();
         this.photoUrl = DEFAULT_PHOTO_URL;
-        this.status = Status.PENDING;
+        this.status = dto.getStatus() == null ?
+                Status.PENDING :
+                Status.valueOf(dto.getStatus());
         this.startPrice = dto.getStartPrice();
         this.actualPrice = dto.getStartPrice();
         this.bids = new ArrayList<>();
@@ -76,7 +78,9 @@ public class Auction {
         this.name = dto.getName();
         this.description = dto.getDescription();
         this.photoUrl = DEFAULT_PHOTO_URL;
-        this.status = Status.PENDING;
+        this.status = dto.getStatus() == null ?
+                Status.PENDING :
+                Status.valueOf(dto.getStatus());
         this.startPrice = dto.getStartPrice();
         this.actualPrice = dto.getStartPrice();
         this.bids = new ArrayList<>();

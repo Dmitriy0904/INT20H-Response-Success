@@ -48,13 +48,11 @@ public class BidServiceImpl implements BidService {
 
     @Override
     public List<Bid> findAllByUser(User user) {
-        //todo check user exist
         return bidRepository.findAllByUser(user);
     }
 
     @Override
     public List<Bid> findAllByAuction(Auction auction) {
-        //todo check auction exist
         return bidRepository.findAllByAuction(auction);
     }
 
